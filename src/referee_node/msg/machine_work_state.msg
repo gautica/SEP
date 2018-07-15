@@ -1,0 +1,13 @@
+int32 id
+int32 machine_id
+float32 machine_work_pos_x
+float32 machine_work_pos_y
+string resource_name
+int32 working_time
+float32 deposition_x
+float32 deposition_y
+float32 deposition_z
+int32 apply_force
+string product
+string roboter_name
+bool is_working

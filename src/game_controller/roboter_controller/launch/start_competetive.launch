@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<launch>
+        <master auto="start"/>
+  	<param name="/use_sim_time" value="true"/>
+
+	<arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+	<!-- Turtlebot3 -->
+  	<include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch" />
+
+        <!-- load environment arena -->
+        <include file="$(find arena)/launch/easy_arena.launch" />
+        <group ns = "robot_1">
+            <param name="robot_description" command="$(find xacro)/xacro.py $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+            <arg name="x_pos" default="-1.140937"/>
+            <arg name="y_pos" default="-2.73"/>
+            <arg name="z_pos" default="0.01"/>
+            <arg name="yaw" default="1.57"/>
+
+            <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+              <param name="publish_frequency" type="double" value="50.0" />
+              <param name="tf_prefix" value="robot_1" />
+            </node>
+
+            <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model robot_1 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg yaw) -param robot_description" />
+        </group>
+
+
+        <group ns = "robot_0">
+            <param name="robot_description" command="$(find xacro)/xacro.py $(find turtlebot3_description)/urdf/turtlebot3_$(arg model)_2.urdf.xacro" />
+
+            <arg name="x_pos" default="-0.540937"/>
+            <arg name="y_pos" default="-2.73"/>
+            <arg name="z_pos" default="0.01"/>
+            <arg name="yaw" default="1.57"/>
+
+            <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+              <param name="publish_frequency" type="double" value="50.0" />
+              <param name="tf_prefix" value="robot_0" />
+            </node>
+
+            <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model robot_0 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg yaw) -param robot_description" />
+        </group>
+
+
+        <!--
+        <node pkg="referee_node" type="spawn_obj" name="spawn_obj" />
+	<node pkg="referee_node" type="despawn_obj" name="despawn_obj" />
+        -->
+	<node pkg="referee_node" type="referee_node" name="referee_node" />
+
+        <node pkg="referee_node" type="machine_blue_1" name="machine_blue_1" />
+        <node pkg="referee_node" type="machine_blue_2" name="machine_blue_2" />
+        <node pkg="referee_node" type="machine_red_1" name="machine_red_1" />
+        <node pkg="referee_node" type="machine_red_2" name="machine_red_2" />
+        <node pkg="referee_node" type="machine_yellow_1" name="machine_yellow_1" />
+        <node pkg="referee_node" type="machine_yellow_2" name="machine_yellow_2" />
+        <node pkg="referee_node" type="spawn_resources" name="spawn_resources" />
+        <node pkg="joy" type="joy_node_1" name="joy_node_1" />
+               <param name="/joy_node_1/dev" type="string" value="/dev/input/js0"/>
+	<node pkg="joy" type="joy_node_2" name="joy_node_2" />
+               <param name="/joy_node_2/dev" type="string" value="/dev/input/js1"/>
+        <node pkg="roboter_controller" type="controller_referee" name="controller_referee" />
+	<node pkg="roboter_controller" type="roboter_controller_1" name="roboter_controller_1" />
+	<node pkg="roboter_controller" type="roboter_controller_2" name="roboter_controller_2" />
+
+        <node pkg="RoboFactorySimGUI" type="robot_factory_sim" name="robot_factory_sim" />
+</launch>

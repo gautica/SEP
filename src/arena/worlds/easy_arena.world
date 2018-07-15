@@ -1,0 +1,211 @@
+<?xml version="1.0"?> 
+<gazebo version="1.0">
+<world name="default">
+    <plugin name="ros_link_attacher_plugin" filename="libgazebo_ros_link_attacher.so"/>
+    <gui>
+    <camera name="gzclient_camera">
+      <pose>-0.230011 -1.980948 0.453254 0 0.353796 -2.209593</pose>
+    </camera>
+    </gui>
+    <scene>
+      <ambient rgba="1 1 1 1"/>
+      <background rgba="0.5 0.5 0.5 1"/>
+      <shadows enabled="false"/>
+      <grid>false</grid>
+      <origin_visual>false</origin_visual>
+      <sky>
+          <time>14</time>    
+          <clouds> </clouds>            
+      </sky>
+    </scene>
+
+    <physics type="ode">
+      <gravity xyz="0 0 -9.8"/>
+      <ode>
+        <solver type="quick" dt="0.001" iters="10" sor="1.3"/>
+        <constraints cfm="0.0" erp="0.2" contact_max_correcting_vel="100.0" contact_surface_layer="0.001"/>
+      </ode>
+    </physics>
+
+   <model name="Arena">
+   <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/Save_Arena.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/Save_Arena.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="link_border">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/Border.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+    <light type="directional" name="directional_1">
+      <pose>0 0 -2 1.5 0 0</pose>
+      <diffuse>0.3 0.3 0.3 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>100</range>
+        <linear>0.01</linear>
+        <constant>0.2</constant>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+ <cast_shadows>true</cast_shadows>
+    </light>
+<!--
+<light type="directional" name="directional_2">
+      <pose>0 0 -2 1.5 0 1.57</pose>
+      <diffuse>0.3 0.3 0.3 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>100</range>
+        <linear>0.01</linear>
+        <constant>0.2</constant>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+ <cast_shadows>true</cast_shadows>
+    </light>
+-->
+<light type="directional" name="directional_3">
+      <pose>0 0 -2 1.5 0 3.14</pose>
+      <diffuse>0.6 0.6 0.6 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>100</range>
+        <linear>0.01</linear>
+        <constant>0.2</constant>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+ <cast_shadows>true</cast_shadows>
+    </light>
+
+<!--
+<light type="directional" name="directional_4">
+      <pose>0 0 -2 1.5 0 4.71</pose>
+      <diffuse>0.6 0.6 0.6 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>100</range>
+        <linear>0.01</linear>
+        <constant>0.2</constant>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+ <cast_shadows>true</cast_shadows>
+    </light>
+-->
+  <light type="directional" name="directional_5">
+      <pose>0 0 -2 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>100</range>
+        <linear>0.01</linear>
+        <constant>0.2</constant>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+      <cast_shadows>true</cast_shadows>
+    </light>
+<!--
+   <model name='camera'>
+      <static>true</static>
+      <pose>-1 0 2 0 1 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name='my_camera' type='camera'>
+          <camera>
+            <save enabled="true">
+              <path>/home/sep_2018/gazebo_camera</path>
+            </save>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>1920</width>
+              <height>1080</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+        </sensor>
+      </link>
+    </model>
+
+<model name='camera'>
+      <static>true</static>
+	<material>Gazebo/Green</material>
+      <pose>0 0 10 0 1.57 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor type="camera" name="camera1">
+	      <update_rate>30.0</update_rate>
+	      <camera name="head">
+		<horizontal_fov>1.3962634</horizontal_fov>
+		<image>
+		  <width>1200</width>
+		  <height>800</height>
+                  <format>R8G8B8</format>
+		</image>
+		<clip>
+		  <near>0.02</near>
+		  <far>300</far>
+		</clip>
+	        <lens>
+                  <type>orthographic</type>
+          	</lens>
+	      </camera>
+	      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+		<alwaysOn>true</alwaysOn>
+		<updateRate>0.0</updateRate>
+		<cameraName>arena_camera</cameraName>
+		<imageTopicName>image_raw</imageTopicName>
+		<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+		<frameName>camera</frameName>
+		<hackBaseline>0.07</hackBaseline>
+		<distortionK1>0.0</distortionK1>
+		<distortionK2>0.0</distortionK2>
+		<distortionK3>0.0</distortionK3>
+		<distortionT1>0.0</distortionT1>
+		<distortionT2>0.0</distortionT2>
+	      </plugin>
+      </sensor>
+      </link>
+    </model>
+-->
+  </world>
+
+</gazebo>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+	<master auto="start"/>
+  	<param name="/use_sim_time" value="true"/>
+
+	<node pkg="referee_node" type="spawn_obj" name="spawn_obj" />
+	<node pkg="referee_node" type="despawn_obj" name="despawn_obj" />
+	<node pkg="referee_node" type="referee_node" name="referee_node" />
+
+        <node pkg="referee_node" type="machine_blue_1" name="machine_blue_1" />
+        <node pkg="referee_node" type="machine_blue_2" name="machine_blue_2" />
+        <node pkg="referee_node" type="machine_red_1" name="machine_red_1" />
+        <node pkg="referee_node" type="machine_red_2" name="machine_red_2" />
+        <node pkg="referee_node" type="machine_yellow_1" name="machine_yellow_1" />
+        <node pkg="referee_node" type="machine_yellow_2" name="machine_yellow_2" />
+
+
+</launch>
+

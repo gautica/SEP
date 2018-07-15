@@ -1,0 +1,9 @@
+int32 id
+string name
+string object_name
+float32 x
+float32 y
+float32 z
+int32 apply_force_orientation
+int32 machine_id
+bool add_index

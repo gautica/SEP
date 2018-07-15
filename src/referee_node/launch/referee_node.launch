@@ -1,0 +1,8 @@
+<launch>
+	<include file="$(find arena)/launch/easy_arena.launch" />
+	<node pkg="referee_node" type="spawn_obj" name="spawn_obj" />
+	<node pkg="referee_node" type="despawn_obj" name="despawn_obj" />
+	<node pkg="referee_node" type="spawn_resources" name="spawn_resources" />
+	<node pkg="referee_node" type="referee_node" name="referee_node" />
+	<node pkg="machine_node" type="machine_node" name="machine_node" />
+</launch>

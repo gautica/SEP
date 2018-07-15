@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>GUI_Background_V4.png</file>
+        <file>images/assignment.png</file>
+        <file>images/assignment_O.png</file>
+        <file>images/As_team.png</file>
+        <file>images/As_team_O.png</file>
+        <file>images/Ki.png</file>
+        <file>images/Ki_O.png</file>
+        <file>images/Player.png</file>
+        <file>images/Player_O.png</file>
+        <file>images/quit.png</file>
+        <file>images/quit_O.png</file>
+        <file>images/Start.png</file>
+        <file>images/start_O.png</file>
+    </qresource>
+</RCC>
